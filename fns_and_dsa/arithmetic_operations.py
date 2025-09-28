@@ -14,6 +14,23 @@ def perform_operation(num1, num2, operation):
                       string message if division by zero occurs.
     """
 
+
+def perform_operation(num1, num2, operation):
+    """
+    Performs basic arithmetic operations (add, subtract, multiply, divide) 
+    on two numbers based on the operation string provided.
+
+    Args:
+        num1 (float): The first numerical operand.
+        num2 (float): The second numerical operand.
+        operation (str): The operation to perform ('add', 'subtract', 
+                         'multiply', or 'divide').
+
+    Returns:
+        float or str: The result of the operation as a float, or a 
+                      string message if division by zero occurs.
+    """
+
 def perform_operation(num1: float, num2: float, operation: str):
     """
     Performs basic arithmetic operations (add, subtract, multiply, divide) 
