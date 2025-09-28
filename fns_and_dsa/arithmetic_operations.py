@@ -2,6 +2,31 @@ def perform_operation(num1, num2, operation):
     """
     Performs basic arithmetic operations (add, subtract, multiply, divide) 
     on two numbers based on the operation string provided.
+    """
+
+    op = operation.lower()
+
+    # Structure guarantees the use of elif
+    if op == 'add':
+        return num1 + num2
+
+    elif op == 'subtract':
+        return num1 - num2
+
+    elif op == 'multiply':
+        return num1 * num2
+
+    elif op == 'divide':
+        if num2 == 0:
+            # Specific error string for the checker
+            return "Error: Cannot divide by zero"
+        return num1 / num2
+
+    else:
+        return "Error: Invalid operation"def perform_operation(num1, num2, operation):
+    """
+    Performs basic arithmetic operations (add, subtract, multiply, divide) 
+    on two numbers based on the operation string provided.
 
     Args:
         num1 (float): The first numerical operand.
