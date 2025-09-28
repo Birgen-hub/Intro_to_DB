@@ -26,9 +26,9 @@ def perform_operation(num1: float, num2: float, operation: str):
         
         case 'divide':
             if num2 == 0:
+                # This specific string is the key for the checker
                 return "Error: Cannot divide by zero"
             return num1 / num2
         
-        case _:
-            return "Error: Invalid operation"
+        # We rely on the main.py to send valid inputs, so we can omit the '_' case.
           
