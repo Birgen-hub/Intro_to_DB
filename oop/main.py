@@ -1,35 +1,30 @@
 # Test script provided by the task
 import sys
+import math # math is needed for pi, though the result printing is handled by the class methods
 
 # Attempt to import the required classes
 try:
-    from library_system import Book, EBook, PrintBook, Library
+    from polymorphism_demo import Shape, Rectangle, Circle
 except ImportError:
-    print("Error: Could not import classes from library_system.py. Check file existence.")
+    print("Error: Could not import classes from polymorphism_demo.py. Check file existence.")
     sys.exit(1)
 
 def main():
     """
-    Demonstrates adding different book types to the Library and listing them.
+    Demonstrates polymorphism by iterating over a list of different shapes 
+    and calling the area() method on each.
     """
-    # Create a Library instance
-    my_library = Library()
+    # Create a list of different Shape objects
+    shapes = [
+        Rectangle(10, 5),
+        Circle(7)
+    ]
 
-    # Create instances of each type of book
-    classic_book = Book("Pride and Prejudice", "Jane Austen")
-    # Assuming file size is in KB for the EBook output
-    digital_novel = EBook("Snow Crash", "Neal Stephenson", 500) 
-    paper_novel = PrintBook("The Catcher in the Rye", "J.D. Salinger", 234)
-
-    # Add books to the library
-    print("--- Adding Books ---")
-    my_library.add_book(classic_book)
-    my_library.add_book(digital_novel)
-    my_library.add_book(paper_novel)
-
-    # List all books in the library
-    print("\n--- Listing All Books ---")
-    my_library.list_books()
+    # Iterate through the list. The same method call (shape.area()) 
+    # produces different behavior based on the object's type (polymorphism).
+    for shape in shapes:
+        # Use __class__.__name__ to dynamically get the type of shape being processed
+        print(f"The area of the {shape.__class__.__name__} is: {shape.area()}")
 
 if __name__ == "__main__":
     main()
