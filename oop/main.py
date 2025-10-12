@@ -1,31 +1,35 @@
+# Test script provided by the task
 import sys
 
-# Attempt to import the Book class
+# Attempt to import the required classes
 try:
-    from book_class import Book
+    from library_system import Book, EBook, PrintBook, Library
 except ImportError:
-    print("Error: Could not import Book class. Ensure book_class.py is present.")
+    print("Error: Could not import classes from library_system.py. Check file existence.")
     sys.exit(1)
 
 def main():
     """
-    Demonstrates the functionality of the Book class and its magic methods.
+    Demonstrates adding different book types to the Library and listing them.
     """
-    # Creating an instance of Book
-    my_book = Book("1984", "George Orwell", 1949)
+    # Create a Library instance
+    my_library = Library()
 
-    # Demonstrating the __str__ method (used by print())
-    print(my_book)  
+    # Create instances of each type of book
+    classic_book = Book("Pride and Prejudice", "Jane Austen")
+    # Assuming file size is in KB for the EBook output
+    digital_novel = EBook("Snow Crash", "Neal Stephenson", 500) 
+    paper_novel = PrintBook("The Catcher in the Rye", "J.D. Salinger", 234)
 
-    # Demonstrating the __repr__ method (used by repr())
-    print(repr(my_book)) 
+    # Add books to the library
+    print("--- Adding Books ---")
+    my_library.add_book(classic_book)
+    my_library.add_book(digital_novel)
+    my_library.add_book(paper_novel)
 
-    # Deleting a book instance to explicitly trigger __del__
-    # This is guaranteed to trigger the destructor
-    del my_book
-
-    # Note: In a larger program, __del__ is called automatically when 
-    # the reference count drops to zero, but explicit 'del' ensures it fires immediately.
+    # List all books in the library
+    print("\n--- Listing All Books ---")
+    my_library.list_books()
 
 if __name__ == "__main__":
     main()
