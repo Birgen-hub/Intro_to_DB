@@ -1,0 +1,57 @@
+-- FILE NAME: alx_book_store.sql
+-- DESCRIPTION: Creates the database and defines the schema for the online bookstore.
+
+-- DROP DATABASE IF EXISTS to ensure a clean slate for deployment
+DROP DATABASE IF EXISTS ALX_BOOK_STORE;
+
+-- 1. CREATE THE DATABASE
+CREATE DATABASE ALX_BOOK_STORE;
+
+-- 2. USE THE DATABASE
+USE ALX_BOOK_STORE;
+
+-- 3. CREATE AUTHORS TABLE
+CREATE TABLE Authors (
+    AUTHOR_ID INT PRIMARY KEY,
+    AUTHOR_NAME VARCHAR(215) NOT NULL
+);
+
+-- 4. CREATE BOOKS TABLE
+CREATE TABLE Books (
+    BOOK_ID INT PRIMARY KEY,
+    TITLE VARCHAR(130) NOT NULL,
+    AUTHOR_ID INT,
+    PRICE DOUBLE NOT NULL,
+    PUBLICATION_DATE DATE,
+    -- Define Foreign Key relationship to Authors table
+    FOREIGN KEY (AUTHOR_ID) REFERENCES Authors(AUTHOR_ID)
+);
+
+-- 5. CREATE CUSTOMERS TABLE
+CREATE TABLE Customers (
+    CUSTOMER_ID INT PRIMARY KEY,
+    CUSTOMER_NAME VARCHAR(215) NOT NULL,
+    EMAIL VARCHAR(215) NOT NULL UNIQUE,
+    ADDRESS TEXT
+);
+
+-- 6. CREATE ORDERS TABLE
+CREATE TABLE Orders (
+    ORDER_ID INT PRIMARY KEY,
+    CUSTOMER_ID INT,
+    ORDER_DATE DATE NOT NULL,
+    -- Define Foreign Key relationship to Customers table
+    FOREIGN KEY (CUSTOMER_ID) REFERENCES Customers(CUSTOMER_ID)
+);
+
+-- 7. CREATE ORDER_DETAILS TABLE (Junction Table)
+CREATE TABLE Order_Details (
+    ORDERDETAILID INT PRIMARY KEY,
+    ORDER_ID INT,
+    BOOK_ID INT,
+    QUANTITY DOUBLE NOT NULL,
+    -- Define Foreign Key relationship to Orders table
+    FOREIGN KEY (ORDER_ID) REFERENCES Orders(ORDER_ID),
+    -- Define Foreign Key relationship to Books table
+    FOREIGN KEY (BOOK_ID) REFERENCES Books(BOOK_ID)
+);
