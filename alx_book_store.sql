@@ -23,7 +23,6 @@ CREATE TABLE Books (
     AUTHOR_ID INT,
     PRICE DOUBLE NOT NULL,
     PUBLICATION_DATE DATE,
-    -- Define Foreign Key relationship to Authors table
     FOREIGN KEY (AUTHOR_ID) REFERENCES Authors(AUTHOR_ID)
 );
 
@@ -40,7 +39,6 @@ CREATE TABLE Orders (
     ORDER_ID INT PRIMARY KEY,
     CUSTOMER_ID INT,
     ORDER_DATE DATE NOT NULL,
-    -- Define Foreign Key relationship to Customers table
     FOREIGN KEY (CUSTOMER_ID) REFERENCES Customers(CUSTOMER_ID)
 );
 
@@ -50,8 +48,6 @@ CREATE TABLE Order_Details (
     ORDER_ID INT,
     BOOK_ID INT,
     QUANTITY DOUBLE NOT NULL,
-    -- Define Foreign Key relationship to Orders table
     FOREIGN KEY (ORDER_ID) REFERENCES Orders(ORDER_ID),
-    -- Define Foreign Key relationship to Books table
     FOREIGN KEY (BOOK_ID) REFERENCES Books(BOOK_ID)
 );
