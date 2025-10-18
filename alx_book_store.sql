@@ -1,12 +1,12 @@
 -- FILE NAME: alx_book_store.sql
--- Description: Creates the database schema for the online bookstore, ensuring all constraints and IF NOT EXISTS syntax are correct.
+-- Description: Creates the database schema for the online bookstore, ensuring all constraints and IF NOT EXISTS syntax are correct, using the required lowercase database name.
 
 -- Force drop the database to ensure a clean slate
-DROP DATABASE IF EXISTS ALX_BOOK_STORE;
+DROP DATABASE IF EXISTS alx_book_store;
 
--- REQUIRED: Create the database using the IF NOT EXISTS syntax
-CREATE DATABASE IF NOT EXISTS ALX_BOOK_STORE;
-USE ALX_BOOK_STORE;
+-- REQUIRED: Create the database using the IF NOT EXISTS syntax and lowercase name
+CREATE DATABASE IF NOT EXISTS alx_book_store;
+USE alx_book_store;
 
 -- 1. CREATE AUTHORS TABLE
 CREATE TABLE Authors (
