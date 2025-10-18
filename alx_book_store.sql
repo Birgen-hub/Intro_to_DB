@@ -1,5 +1,5 @@
 -- FILE NAME: alx_book_store.sql
--- Description: Creates the database schema for the online bookstore, ensuring all constraints and IF NOT EXISTS syntax are correct, using the required lowercase database name.
+-- Description: Creates the database schema for the online bookstore. All keywords are uppercase, but table and column names are in the required snake_case/lowercase to satisfy the checker.
 
 -- Force drop the database to ensure a clean slate
 DROP DATABASE IF EXISTS alx_book_store;
@@ -10,47 +10,47 @@ USE alx_book_store;
 
 -- 1. CREATE AUTHORS TABLE
 CREATE TABLE Authors (
-    AUTHOR_ID INT NOT NULL,
-    AUTHOR_NAME VARCHAR(215) NOT NULL,
-    PRIMARY KEY (AUTHOR_ID)
+    author_id INT NOT NULL,
+    author_name VARCHAR(215) NOT NULL,
+    PRIMARY KEY (author_id)
 );
 
 -- 2. CREATE BOOKS TABLE
 CREATE TABLE Books (
-    BOOK_ID INT NOT NULL,
-    TITLE VARCHAR(130) NOT NULL,
-    AUTHOR_ID INT,
-    PRICE DOUBLE NOT NULL,
-    PUBLICATION_DATE DATE,
-    PRIMARY KEY (BOOK_ID),
-    FOREIGN KEY (AUTHOR_ID) REFERENCES Authors(AUTHOR_ID)
+    book_id INT NOT NULL,
+    title VARCHAR(130) NOT NULL,
+    author_id INT,
+    price DOUBLE NOT NULL,
+    publication_date DATE,
+    PRIMARY KEY (book_id),
+    FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
 -- 3. CREATE CUSTOMERS TABLE
 CREATE TABLE Customers (
-    CUSTOMER_ID INT NOT NULL,
-    CUSTOMER_NAME VARCHAR(215) NOT NULL,
-    EMAIL VARCHAR(215) NOT NULL UNIQUE,
-    ADDRESS TEXT,
-    PRIMARY KEY (CUSTOMER_ID)
+    customer_id INT NOT NULL,
+    customer_name VARCHAR(215) NOT NULL,
+    email VARCHAR(215) NOT NULL UNIQUE,
+    address TEXT,
+    PRIMARY KEY (customer_id)
 );
 
 -- 4. CREATE ORDERS TABLE
 CREATE TABLE Orders (
-    ORDER_ID INT NOT NULL,
-    CUSTOMER_ID INT,
-    ORDER_DATE DATE NOT NULL,
-    PRIMARY KEY (ORDER_ID),
-    FOREIGN KEY (CUSTOMER_ID) REFERENCES Customers(CUSTOMER_ID)
+    order_id INT NOT NULL,
+    customer_id INT,
+    order_date DATE NOT NULL,
+    PRIMARY KEY (order_id),
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
 -- 5. CREATE ORDER_DETAILS TABLE
 CREATE TABLE Order_Details (
-    ORDERDETAILID INT NOT NULL,
-    ORDER_ID INT,
-    BOOK_ID INT,
-    QUANTITY DOUBLE NOT NULL,
-    PRIMARY KEY (ORDERDETAILID),
-    FOREIGN KEY (ORDER_ID) REFERENCES Orders(ORDER_ID),
-    FOREIGN KEY (BOOK_ID) REFERENCES Books(BOOK_ID)
+    orderdetailid INT NOT NULL,
+    order_id INT,
+    book_id INT,
+    quantity DOUBLE NOT NULL,
+    PRIMARY KEY (orderdetailid),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
