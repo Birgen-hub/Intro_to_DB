@@ -1,8 +1,8 @@
 -- SWITCH TO THE CORRECT DATABASE
 USE alx_book_store;
 
--- TABLE 1: AUTHORS
-CREATE TABLE IF NOT EXISTS AUTHORS (
+-- TABLE 1: Authors (Fixed case to match checker)
+CREATE TABLE IF NOT EXISTS Authors (
     author_id INT PRIMARY KEY AUTO_INCREMENT,
     author_name VARCHAR(215) NOT NULL
 );
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS BOOKS (
     author_id INT,
     price DECIMAL(10, 2),
     publication_date DATE,
-    FOREIGN KEY (author_id) REFERENCES AUTHORS(author_id)
+    FOREIGN KEY (author_id) REFERENCES Authors(author_id) -- Reference fixed
 );
 
 -- TABLE 3: CUSTOMERS
