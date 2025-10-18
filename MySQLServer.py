@@ -17,19 +17,28 @@ def create_database():
     """
     connection = None
     try:
+        # Attempt connection
         connection = mysql.connector.connect(**MYSQL_CONFIG)
         
-        if connection.is_connected():
-            cursor = connection.cursor()
-            create_db_query = "CREATE DATABASE IF NOT EXISTS alx_book_store"
-            cursor.execute(create_db_query)
-            print("Database 'alx_book_store' created successfully!")
-            cursor.close()
+        # Directly execute the query without the is_connected check (to avoid implicit SELECT/SHOW)
+        cursor = connection.cursor()
+        
+        # Required command
+        create_db_query = "CREATE DATABASE IF NOT EXISTS alx_book_store"
+        
+        cursor.execute(create_db_query)
+        
+        # Required print message
+        print("Database 'alx_book_store' created successfully!")
+
+        cursor.close()
 
     except mysql.connector.Error as err:
+        # Required error message
         print(f"Error: Failed to connect to MySQL or execute command. Details: {err}")
 
     finally:
+        # Handle open and close of the DB connection
         if connection is not None and connection.is_connected():
             connection.close()
 
