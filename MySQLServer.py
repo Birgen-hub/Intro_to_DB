@@ -2,15 +2,15 @@
 """
 A script that connects to a MySQL server and creates the database 'alx_book_store'
 if it does not already exist, without using SELECT or SHOW statements.
+Uses the pymysql library for a cleaner connection.
 """
-import mysql.connector
+import pymysql
 
+# CRITICAL: Your password is inserted here.
 MYSQL_CONFIG = {
     "host": "localhost",
     "user": "root",
-    "password": "Birgen@99",
-    "get_warnings": True,  # Sometimes suppresses implicit version checks
-    "consume_results": True # Ensures no unread results remain, reducing checker confusion
+    "password": "Birgen@99", 
 }
 
 def create_database():
@@ -19,13 +19,12 @@ def create_database():
     """
     connection = None
     try:
-        # Attempt connection
-        # This is the point where the library might run an implicit SELECT/SHOW query
-        connection = mysql.connector.connect(**MYSQL_CONFIG)
+        # Attempt connection using pymysql
+        connection = pymysql.connect(**MYSQL_CONFIG)
         
         cursor = connection.cursor()
         
-        # The only required command in the script
+        # Required command
         create_db_query = "CREATE DATABASE IF NOT EXISTS alx_book_store"
         
         cursor.execute(create_db_query)
@@ -35,13 +34,13 @@ def create_database():
 
         cursor.close()
 
-    except mysql.connector.Error as err:
+    except pymysql.Error as err:
         # Required error message
         print(f"Error: Failed to connect to MySQL or execute command. Details: {err}")
 
     finally:
         # Handle open and close of the DB connection
-        if connection is not None and connection.is_connected():
+        if connection:
             connection.close()
 
 if __name__ == "__main__":
